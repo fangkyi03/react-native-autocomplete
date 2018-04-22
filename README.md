@@ -7,6 +7,32 @@
 安装
 > npm i --save react-native-autocomplete
 
+示例
+```
+   <AutoCompleteView 
+        ref={'_autoView'}
+        itemKey={'name'}
+        itemData={itemList}
+        style={styles.container}
+   >
+   <!-- 
+    这里的这个 AutoCompleteInput继承了textInput的所有属性 可以正正常使用
+    只要在children里面 可以放在任何位置 都可以正常使用 底层使用context上下文来传递数据
+   -->
+    <AutoCompleteInput 
+            style={styles.headerInputView}
+            onChangeText={this.onChangeText}
+            value={this.state.inputSearchText}
+            onSubmitEditing={this.onSubmitEditing}
+            placeholder={'商品名称/商品编号/订单号'}
+            inputStyle={{flex:1,marginLeft:10}}
+            onItemPress={this.onItemPress}
+        >
+        </AutoCompleteInput>
+   </AutoCompleteView>
+```
+
+
 ## AutoCompleteViewProps
 
 Prop            | Type   | Optional | Default   | Description
