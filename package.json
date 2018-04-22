@@ -1,0 +1,23 @@
+{
+  "name": "react-native-autocomplete",
+  "version": "0.0.1",
+  "description": "react-native编辑框自动补全组件 适配android跟ios",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/fangkyi03/react-native-autocomplete.git"
+  },
+  "keywords": [
+    "react-native",
+    "autocomplete"
+  ],
+  "author": "fangkyi03",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fangkyi03/react-native-autocomplete/issues"
+  },
+  "homepage": "https://github.com/fangkyi03/react-native-autocomplete#readme"
+}
