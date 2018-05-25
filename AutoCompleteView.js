@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         minHeight:150,
         backgroundColor: 'white',
         borderColor: 'black',
-        borderWidth: 0.5,
+        borderWidth: 1,
     }
 });
 
