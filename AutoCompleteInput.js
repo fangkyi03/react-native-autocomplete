@@ -25,8 +25,8 @@ class AutoCompleteInput extends Component {
      */
     onFocus = (e) =>{
        const {onItemPress} = this.props
-       this.refs._inputView.measureInWindow((x,y,width,height)=>{
-           this.context.openModal({x,y:y + height,width,height},{blur:this.blur,onItemPress})
+       this.refs._input.measureInWindow((x,y,width,height)=>{
+           this.context.openModal({x,y,width,height},{blur:this.blur,onItemPress})
        })
     }
 
