@@ -36,48 +36,56 @@ class AutoCompleteView extends Component {
     }
 
     getChildContext = () =>{
-        return {openModal:this.openModal,closeModal:this.openModal}
+        return { openModal: this.openModal, closeModal: this.closeModal}
     }
 
-    onItemPress = (item) =>{
-        this.callBack.onItemPress && this.callBack.onItemPress(item)
+    onItemPress = (item,txt) =>{
+        this.callBack.onItemPress && this.callBack.onItemPress(txt,item);
         this.closeModal()
     }
 
-    render() {
-        const {style,itemData,itemKey,itemView,itemButtonView,itemTextView} = this.props
-        const {layout,isModalShow} = this.state
+    renderSelect = () =>{
+        const { itemData, itemKey, itemView, itemButtonView, itemTextView } = this.props
+        const { layout } = this.state
         return (
-            <View style={[styles.container,style]}>
-                {this.props.children}
-                <View style={{position:'absolute',top:layout.y,left:0,right:0,height,width,}}>
-                    <View style={[styles.itemMainView,itemView,{marginLeft:layout.x,width:layout.width}]}>
-                        <ScrollView 
-                            style={{flex:1,maxHeight:150,padding:10}}
-                            showsVerticalScrollIndicator={false}
-                        >
-                            {
-                                itemData ? itemData.map((e,index)=>{
-                                    return (
-                                        <TouchableOpacity
-                                            key={index}
-                                            onPress={()=>this.onItemPress(e)}
-                                            style={[itemButtonView,{minHeight:30,justifyContent:'center',alignItems:'flex-start'}]}
-                                        >
-                                            <Text style={[itemTextView]}>{e[itemKey]}</Text>
-                                        </TouchableOpacity>
-                                    )
-                                })
-                                : <View style={{flex:1}}></View>
-                            }
-                        </ScrollView>
-                    </View>
-                    <TouchableOpacity
-                        style={{flex:1}}
-                        onPress={()=>this.closeModal()}
-                    />
+            <View style={{ position: 'absolute', top: layout.y, left: 0, right: 0, height, width, }}>
+                <View style={[styles.itemMainView, itemView, { marginLeft: layout.x, width: layout.width }]}>
+                    <ScrollView
+                        style={{ flex: 1, maxHeight: 150, padding: 10 }}
+                        showsVerticalScrollIndicator={false}
+                    >
+                        {
+                            itemData ? itemData.map((e, index) => {
+                                return (
+                                    <TouchableOpacity
+                                        key={index}
+                                        onPress={() => this.onItemPress(e, e[itemKey])}
+                                        style={[itemButtonView, { minHeight: 30, justifyContent: 'center', alignItems: 'flex-start' }]}
+                                    >
+                                        <Text style={[itemTextView]}>{e[itemKey]}</Text>
+                                    </TouchableOpacity>
+                                )
+                            })
+                                : <View style={{ flex: 1 }}></View>
+                        }
+                    </ScrollView>
                 </View>
+                <TouchableOpacity
+                    style={{ flex: 1 }}
+                    onPress={() => this.closeModal()}
+                />
             </View>
+        )
+    }
+
+    render() {
+        const {style,itemData} = this.props
+        const {isModalShow} = this.state
+        return (
+          <View style={[styles.container, style]}>
+            {this.props.children}
+            {itemData && isModalShow && this.renderSelect()}
+          </View>
         );
     }
 }
@@ -95,7 +103,6 @@ const styles = StyleSheet.create({
     itemMainView:{
         minHeight:150,
         backgroundColor: 'white',
-        borderColor: 'black',
         borderWidth: 1,
     }
 });
